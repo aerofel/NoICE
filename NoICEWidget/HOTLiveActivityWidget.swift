@@ -226,7 +226,7 @@ struct ProgressBarView: View {
 
                 // Current position indicator (hidden when at limit)
                 if !atLimit {
-                    Capsule()
+                    RoundedRectangle(cornerRadius: 3)
                         .fill(Color.white)
                         .frame(width: indicatorWidth, height: barHeight + 4)
                         .offset(x: totalWidth * progress - indicatorWidth / 2)
