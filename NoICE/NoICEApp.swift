@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import HOTKit
 
 @main
 struct NoICEApp: App {
+    @StateObject private var configuration = DefaultHOTConfiguration()
+    @StateObject private var hotState = HOTState()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(configuration: configuration, hotState: hotState)
         }
     }
 }

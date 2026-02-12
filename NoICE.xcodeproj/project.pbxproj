@@ -6,14 +6,67 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6E1CF3202F1AD9000047178B /* HOTKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6E1CF31F2F1AD9000047178B /* HOTKit */; };
+		6E1CF3302F1ADA000047178B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1CF32F2F1ADA000047178B /* WidgetKit.framework */; };
+		6E1CF3322F1ADA000047178B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1CF3312F1ADA000047178B /* SwiftUI.framework */; };
+		6E1CF33A2F1ADA000047178B /* NoICEWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6E1CF32D2F1ADA000047178B /* NoICEWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6E1CF3402F1ADA100047178B /* HOTKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6E1CF33F2F1ADA100047178B /* HOTKit */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6E1CF3382F1ADA000047178B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E1CF3062F1AD8E30047178B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E1CF32C2F1ADA000047178B;
+			remoteInfo = NoICEWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6E1CF33B2F1ADA000047178B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6E1CF33A2F1ADA000047178B /* NoICEWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6E1CF30E2F1AD8E30047178B /* NoICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E1CF32D2F1ADA000047178B /* NoICEWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NoICEWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E1CF32F2F1ADA000047178B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		6E1CF3312F1ADA000047178B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6E1CF3502F1ADB000047178B /* Exceptions for "NoICEWidget" folder in "NoICEWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6E1CF32C2F1ADA000047178B /* NoICEWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6E1CF3102F1AD8E30047178B /* NoICE */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = NoICE;
+			sourceTree = "<group>";
+		};
+		6E1CF3332F1ADA000047178B /* NoICEWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6E1CF3502F1ADB000047178B /* Exceptions for "NoICEWidget" folder in "NoICEWidgetExtension" target */,
+			);
+			path = NoICEWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +76,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1CF3202F1AD9000047178B /* HOTKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E1CF32A2F1ADA000047178B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E1CF3322F1ADA000047178B /* SwiftUI.framework in Frameworks */,
+				6E1CF3302F1ADA000047178B /* WidgetKit.framework in Frameworks */,
+				6E1CF3402F1ADA100047178B /* HOTKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				6E1CF3102F1AD8E30047178B /* NoICE */,
+				6E1CF3332F1ADA000047178B /* NoICEWidget */,
+				6E1CF32E2F1ADA000047178B /* Frameworks */,
 				6E1CF30F2F1AD8E30047178B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +107,18 @@
 			isa = PBXGroup;
 			children = (
 				6E1CF30E2F1AD8E30047178B /* NoICE.app */,
+				6E1CF32D2F1ADA000047178B /* NoICEWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6E1CF32E2F1ADA000047178B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E1CF32F2F1ADA000047178B /* WidgetKit.framework */,
+				6E1CF3312F1ADA000047178B /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,20 +131,46 @@
 				6E1CF30A2F1AD8E30047178B /* Sources */,
 				6E1CF30B2F1AD8E30047178B /* Frameworks */,
 				6E1CF30C2F1AD8E30047178B /* Resources */,
+				6E1CF33B2F1ADA000047178B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6E1CF3392F1ADA000047178B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6E1CF3102F1AD8E30047178B /* NoICE */,
 			);
 			name = NoICE;
 			packageProductDependencies = (
+				6E1CF31F2F1AD9000047178B /* HOTKit */,
 			);
 			productName = NoICE;
 			productReference = 6E1CF30E2F1AD8E30047178B /* NoICE.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6E1CF32C2F1ADA000047178B /* NoICEWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E1CF33E2F1ADA000047178B /* Build configuration list for PBXNativeTarget "NoICEWidgetExtension" */;
+			buildPhases = (
+				6E1CF3292F1ADA000047178B /* Sources */,
+				6E1CF32A2F1ADA000047178B /* Frameworks */,
+				6E1CF32B2F1ADA000047178B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6E1CF3332F1ADA000047178B /* NoICEWidget */,
+			);
+			name = NoICEWidgetExtension;
+			packageProductDependencies = (
+				6E1CF33F2F1ADA100047178B /* HOTKit */,
+			);
+			productName = NoICEWidgetExtension;
+			productReference = 6E1CF32D2F1ADA000047178B /* NoICEWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,6 +185,9 @@
 					6E1CF30D2F1AD8E30047178B = {
 						CreatedOnToolsVersion = 26.2;
 					};
+					6E1CF32C2F1ADA000047178B = {
+						CreatedOnToolsVersion = 26.2;
+					};
 				};
 			};
 			buildConfigurationList = 6E1CF3092F1AD8E30047178B /* Build configuration list for PBXProject "NoICE" */;
@@ -94,18 +199,29 @@
 			);
 			mainGroup = 6E1CF3052F1AD8E30047178B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6E1CF31E2F1AD9000047178B /* XCLocalSwiftPackageReference "../HOTKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6E1CF30F2F1AD8E30047178B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				6E1CF30D2F1AD8E30047178B /* NoICE */,
+				6E1CF32C2F1ADA000047178B /* NoICEWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6E1CF30C2F1AD8E30047178B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E1CF32B2F1ADA000047178B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +238,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6E1CF3292F1ADA000047178B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E1CF3392F1ADA000047178B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E1CF32C2F1ADA000047178B /* NoICEWidgetExtension */;
+			targetProxy = 6E1CF3382F1ADA000047178B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6E1CF3172F1AD8E40047178B /* Debug */ = {
@@ -246,14 +377,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NoICE/NoICE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 98WPD945JS;
-				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "No-ICE";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -262,26 +395,21 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.looping.NoICE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 26.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -290,14 +418,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NoICE/NoICE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 98WPD945JS;
-				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "No-ICE";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -306,26 +436,84 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.looping.NoICE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 26.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6E1CF33C2F1ADA000047178B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NoICEWidget/NoICEWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 98WPD945JS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NoICEWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NoICEWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.looping.NoICE.NoICEWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6E1CF33D2F1ADA000047178B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NoICEWidget/NoICEWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 98WPD945JS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NoICEWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NoICEWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.looping.NoICE.NoICEWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -350,7 +538,34 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		6E1CF33E2F1ADA000047178B /* Build configuration list for PBXNativeTarget "NoICEWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E1CF33C2F1ADA000047178B /* Debug */,
+				6E1CF33D2F1ADA000047178B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		6E1CF31E2F1AD9000047178B /* XCLocalSwiftPackageReference "../HOTKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../HOTKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E1CF31F2F1AD9000047178B /* HOTKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HOTKit;
+		};
+		6E1CF33F2F1ADA100047178B /* HOTKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HOTKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E1CF3062F1AD8E30047178B /* Project object */;
 }
