@@ -9,8 +9,8 @@ OFFICIAL DATA, ALWAYS CURRENT
 - Multiple fluid concentrations and temperature ranges
 
 PRECISION TIMER
-- One-tap start, pause, and resume
-- Elapsed time displayed in aviation-standard UTC/Zulu format
+- One-tap start, pause, and resume with animated visual feedback
+- Elapsed time and UTC/Zulu start time displayed at a glance
 - Assured time (green) and Limit time (orange) calculated in real time
 - Automatic flaps/slats factor (0.76 reduction) when extended
 - Freeze timestamps to log each check during multi-step procedures
@@ -18,7 +18,8 @@ PRECISION TIMER
 LIVE ACTIVITY & DYNAMIC ISLAND
 - Monitor your hold-over countdown directly from the lock screen
 - Dynamic Island integration for at-a-glance status
-- Full progress bar with color-coded zones: green, orange, red
+- Visual progress bar with color-coded assured and limit zones
+- Bar turns fully red when hold-over time is exceeded
 - All key data visible without opening the app
 
 BUILT FOR THE FLIGHT DECK
