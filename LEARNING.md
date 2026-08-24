@@ -38,3 +38,39 @@
   TCA gained "Moderate snow mixed with rain" and "Snow mixed with freezing fog" (FAA already had both).
 - Generic Type IV table renumbered 19 → 20 (not removed — three new Type IV fluids took 50/51/52).
 - FAA gained Generic Active Frost tables for Types 2/3/4, aligning its structure with TCA.
+
+## 2026-08-24 — Release 1.1: packaging and Xcode Cloud
+
+**Xcode Cloud cannot build a local package reference**
+- NoICE referenced HOTKit as `XCLocalSwiftPackageReference` with `relativePath = ../HOTKit`.
+  Xcode Cloud clones only the primary repo, so a sibling path never exists on the builder.
+  Converted to `XCRemoteSwiftPackageReference` on `https://github.com/aerofel/HOTKit.git`
+  pinned `upToNextMajorVersion` from `1.2.0`.
+- Consequence: **local HOTKit edits no longer reach the app.** Each HOTKit change now needs a
+  commit, a new tag, and a `Package.resolved` update in NoICE.
+- The way to actually prove this works is a clean clone into a directory with no sibling HOTKit,
+  then build. Building in place passes even when the remote ref is broken, because SPM may reuse
+  a cached checkout.
+
+**aerofel/HOTKit is PRIVATE; aerofel/NoICE is PUBLIC**
+- Xcode Cloud can still resolve it: HOTKit is granted to the Xcode Cloud GitHub App
+  (it appears under `/v1/scmProviders/{id}/repositories`).
+- But a public clone of NoICE cannot build without access to HOTKit. Worth revisiting if the
+  repo is meant to be buildable by outsiders.
+
+**Activating Xcode Cloud is GUI-only**
+- The App Store Connect API refuses product creation:
+  `403 The resource 'ciProducts' does not allow 'CREATE'. Allowed operations are: DELETE,
+  GET_COLLECTION, GET_INSTANCE.`
+- So the first-time onboarding must happen in Xcode (Product ▸ Xcode Cloud ▸ Create Workflow)
+  or on the ASC website. Once a `ciProduct` exists, `POST /v1/ciBuildRuns` *can* start builds.
+- `aerofel/NoICE` was not yet granted to the Xcode Cloud GitHub App — only Offto, sQRH, askM,
+  starLOG, and HOTKit were. Granting it is part of the same onboarding step.
+
+**App Store Connect facts for this app**
+- Live: 1.0 (build 1). Repo HEAD had build 2, so 1.1 ships as **build 3** to stay monotonic.
+- `deliver` only uploads metadata files that exist locally — absent files (e.g. `subtitle.txt`)
+  leave the live values untouched. Useful for narrow metadata updates.
+- precheck flagged two real issues: no `fastlane/metadata/copyright.txt`, and a marketing URL of
+  `https://feel.aero/no-ice/` that 404s. The working page is `https://feel.aero/apps/no-ice`.
+- A `fastlane/Deliverfile` with `app_identifier` is required for non-interactive runs.
