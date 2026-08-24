@@ -309,6 +309,7 @@ struct ExpandedLeadingView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
+        .padding(.leading, 6)
     }
 }
 
@@ -325,6 +326,7 @@ struct ExpandedTrailingView: View {
                 .font(.caption2)
                 .foregroundStyle(.secondary)
         }
+        .padding(.trailing, 6)
     }
 }
 
@@ -384,6 +386,8 @@ struct ExpandedBottomView: View {
                     .font(.caption2)
                     .foregroundStyle(.orange)
             }
+            .padding(.leading, 6)
+            .padding(.trailing, 6)
         }
     }
 

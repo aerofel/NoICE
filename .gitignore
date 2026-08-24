@@ -1,2 +1,4 @@
 fastlane/api_key.json
 Screenshots/
+.claude/settings.local.json
+.DS_Store

@@ -1,6 +1,15 @@
 {
-  "originHash" : "314a8638654beb4a87b9f0549dd15b60aaf4e483b360c68a151013c3e420aa2f",
+  "originHash" : "c961584fa42bfd266d296f43c429dbe83cc6a875254736203a3eea6c05b12b16",
   "pins" : [
+    {
+      "identity" : "hotkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aerofel/HOTKit.git",
+      "state" : {
+        "revision" : "582834a0d1249633f0be38432c487262fb859d18",
+        "version" : "1.2.0"
+      }
+    },
     {
       "identity" : "xmlcoder",
       "kind" : "remoteSourceControl",
