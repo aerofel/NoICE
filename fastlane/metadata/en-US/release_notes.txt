@@ -1,0 +1,21 @@
+Updated for the 2026-27 winter season.
+
+NEW HOLD-OVER TIME TABLES
+- FAA and Transport Canada tables updated to the Winter 2026-27 edition
+- Expanded coverage: 56 tables per source, up from 50 (FAA) and 53 (TCA)
+
+NEW FLUIDS
+- Type IV: Newave Aerochemical FCY-EGIV PLUS, Shaanxi Cleanway Cleansurface IV, and Xinjiang Zhongtian Liyang Aviation Clearice-IV
+- Type II: ROMCHIM ADD-PROTECT
+- Type III: AllClear AeroClear MAX applied unheated, high speed ramp test
+
+BROADER WEATHER COVERAGE
+- Transport Canada tables now include moderate snow mixed with rain, and snow mixed with freezing fog
+- Generic active frost tables added across Type II, III, and IV in the FAA source
+
+REFINEMENTS
+- Improved Dynamic Island layout with cleaner edge spacing in the expanded view
+
+Always cross-check against the current official FAA or Transport Canada tables and your operator's procedures.
+
+Safe flights this winter.

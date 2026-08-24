@@ -3,7 +3,7 @@ No-ICE is the streamlined hold-over time companion built for professional pilots
 Whether you're operating in light freezing drizzle or heavy snow, No-ICE filters through complex hold-over time tables in seconds — so you can focus on what matters: a safe departure.
 
 OFFICIAL DATA, ALWAYS CURRENT
-- FAA and Transport Canada (TCA) hold-over time tables
+- FAA and Transport Canada (TCA) hold-over time tables, Winter 2026-27 edition
 - Type I, II, III, and IV fluid coverage
 - All weather conditions: snow, freezing rain, freezing drizzle, frost, and more
 - Multiple fluid concentrations and temperature ranges
