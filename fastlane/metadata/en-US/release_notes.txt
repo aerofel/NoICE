@@ -5,16 +5,23 @@ NEW HOLD-OVER TIME TABLES
 - Expanded coverage: 56 tables per source, up from 50 (FAA) and 53 (TCA)
 
 NEW FLUIDS
-- Type IV: Newave Aerochemical FCY-EGIV PLUS, Shaanxi Cleanway Cleansurface IV, and Xinjiang Zhongtian Liyang Aviation Clearice-IV
-- Type II: ROMCHIM ADD-PROTECT
-- Type III: AllClear AeroClear MAX applied unheated, high speed ramp test
+- Type II: LNT Solutions P250
+- Type IV: LNT Solutions P450, MAX TECH LLC MTL 4-EG, and MAX TECH LLC MTL 4-PG
+
+WITHDRAWN
+- AVIAFLUID AVIAFlight EG (Type IV) has been withdrawn by the publishers and removed. Its PG counterpart is unaffected and remains in the tables.
 
 BROADER WEATHER COVERAGE
 - Transport Canada tables now include moderate snow mixed with rain, and snow mixed with freezing fog
 - Generic active frost tables added across Type II, III, and IV in the FAA source
+- Both sources now carry the same 56 tables and the same eleven precipitation conditions, so switching source no longer changes which weather types are offered
+
+RENAMED
+- The three AllClear AeroClear MAX Type III tables now read "applied unheated -- low/middle/high speed ramp test". Same fluid, same numbers; only the label changed.
 
 REFINEMENTS
 - Improved Dynamic Island layout with cleaner edge spacing in the expanded view
+- Corrected precipitation-condition labels carried over from the source documents
 
 Always cross-check against the current official FAA or Transport Canada tables and your operator's procedures.
 
