@@ -44,122 +44,108 @@ struct HOTLiveActivityWidget: Widget {
     }
 }
 
+// MARK: - Shared helpers
+
+private extension ActivityViewContext where Attributes == HOTActivityAttributes {
+    var fluidColor: Color { colorForFluidType(state.fluidType) }
+
+    var weatherSymbol: String {
+        HOTActivityAttributes.sfSymbolForPrecipitation(state.precipitationType)
+    }
+
+    var temperatureText: String {
+        "\(Int(state.temperature))\u{00A0}\u{00B0}\(state.temperatureUnit)"
+    }
+
+    /// "IV · 75/25"
+    var fluidText: String {
+        "\(HOTActivityAttributes.fluidTypeRoman(state.fluidType)) \u{00B7} \(Int(state.fluidPercentage))/\(Int(state.waterPercentage))"
+    }
+
+    var assuredRatio: Double {
+        state.limitTimeSeconds > 0 ? state.assuredTimeSeconds / state.limitTimeSeconds : 0
+    }
+
+    /// Green in the assured zone, orange between assured and limit, red past the limit.
+    var statusColor: Color {
+        if state.progress >= 1.0 { return .red }
+        if state.progress >= assuredRatio { return .orange }
+        return .green
+    }
+}
+
+private func formatElapsed(_ seconds: TimeInterval, showHours: Bool = true) -> String {
+    let hours = Int(seconds) / 3600
+    let minutes = (Int(seconds) % 3600) / 60
+    let secs = Int(seconds) % 60
+    return showHours
+        ? String(format: "%02d:%02d:%02d", hours, minutes, secs)
+        : String(format: "%02d:%02d", hours * 60 + minutes, secs)
+}
+
+/// Amber "paused" pill.
+private struct PausedPill: View {
+    var body: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "pause.fill")
+                .font(.system(size: 9, weight: .bold))
+            Text("PAUSED")
+                .font(.system(size: 10, weight: .bold))
+                .tracking(0.5)
+        }
+        .foregroundStyle(.yellow)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 5)
+        .background(Color.yellow.opacity(0.18), in: Capsule())
+    }
+}
+
 // MARK: - Lock Screen View
 struct LockScreenView: View {
     let context: ActivityViewContext<HOTActivityAttributes>
 
     var body: some View {
-        VStack(spacing: 8) {
-            // Header row
-            HStack {
-                // Weather icon and condition
-                HStack(spacing: 6) {
-                    Image(systemName: HOTActivityAttributes.sfSymbolForPrecipitation(context.state.precipitationType))
-                        .font(.title2)
-                        .foregroundStyle(.cyan)
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(context.state.weatherCondition)
-                            .font(.caption)
-                            .fontWeight(.medium)
-                            .lineLimit(2)
-
-                        Text("\(Int(context.state.temperature))\u{00B0}\(context.state.temperatureUnit)")
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
-                    }
+        VStack(alignment: .leading, spacing: 10) {
+            // Context strip, same as the in-app timer card
+            HStack(spacing: 6) {
+                ContextPill(systemImage: context.weatherSymbol, tint: WeatherStyle.tint, text: context.state.weatherCondition)
+                    .layoutPriority(-1)
+                ContextPill(systemImage: "thermometer.medium", tint: WeatherStyle.tint, text: context.temperatureText)
+                ContextPill(systemImage: "drop.fill", tint: context.fluidColor, text: context.fluidText)
+                if context.state.flapsExtended {
+                    ContextPill(systemImage: "chevron.down.right.2", tint: .orange, text: "\u{00D7}0.76", emphasized: true)
                 }
-
-                Spacer()
-
-                // Fluid type badge
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("Type \(HOTActivityAttributes.fluidTypeRoman(context.state.fluidType))")
-                        .font(.caption)
-                        .fontWeight(.semibold)
-
-                    Text("(\(Int(context.state.fluidPercentage))/\(Int(context.state.waterPercentage)))")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                if !context.state.isRunning {
+                    PausedPill()
                 }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(fluidColor.opacity(0.3))
-                .clipShape(RoundedRectangle(cornerRadius: 6))
-
-                // Flaps indicator
-                Image(systemName: context.state.flapsExtended ? "chevron.down.right.2" : "chevron.forward.2")
-                    .font(.title2)
-                    .foregroundStyle(context.state.flapsExtended ? .orange : .white)
             }
 
             // Progress bar
             ProgressBarView(context: context)
 
             // Time row
-            HStack {
-                // Elapsed time
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Elapsed")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                    Text(formatElapsed(context.state.elapsedSeconds))
-                        .font(.system(.body, design: .monospaced))
-                        .fontWeight(.medium)
-                }
-
+            HStack(alignment: .top) {
+                timeColumn(label: "Elapsed", tint: .secondary, zulu: nil, value: formatElapsed(context.state.elapsedSeconds), alignment: .leading)
                 Spacer()
-
-                // Assured time
-                VStack(alignment: .center, spacing: 2) {
-                    Text("Assured")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                    Text(context.state.assuredTimeZulu)
-                        .font(.system(.body, design: .monospaced))
-                        .fontWeight(.medium)
-                        .foregroundStyle(.green)
-                }
-
+                timeColumn(label: "Assured", tint: .green, zulu: context.state.assuredTimeZulu, value: nil, alignment: .center)
                 Spacer()
-
-                // Limit time
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("Limit")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                    Text(context.state.limitTimeZulu)
-                        .font(.system(.body, design: .monospaced))
-                        .fontWeight(.medium)
-                        .foregroundStyle(.orange)
-                }
-            }
-
-            // Status indicator
-            if !context.state.isRunning {
-                Text("PAUSED")
-                    .font(.caption)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.yellow)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 4)
-                    .background(Color.yellow.opacity(0.2))
-                    .clipShape(Capsule())
+                timeColumn(label: "Limit", tint: .orange, zulu: context.state.limitTimeZulu, value: nil, alignment: .trailing)
             }
         }
         .padding()
         .activityBackgroundTint(Color.black.opacity(0.8))
     }
 
-    private var fluidColor: Color {
-        colorForFluidType(context.state.fluidType)
-    }
-
-    private func formatElapsed(_ seconds: TimeInterval) -> String {
-        let hours = Int(seconds) / 3600
-        let minutes = (Int(seconds) % 3600) / 60
-        let secs = Int(seconds) % 60
-        return String(format: "%02d:%02d:%02d", hours, minutes, secs)
+    /// Label on top, then either a big value (elapsed) or a big Zulu time (assured / limit).
+    private func timeColumn(label: String, tint: Color, zulu: String?, value: String?, alignment: HorizontalAlignment) -> some View {
+        VStack(alignment: alignment, spacing: 3) {
+            StatLabel(text: label, tint: tint)
+            Text(value ?? zulu ?? "")
+                .font(.system(.title3, design: .rounded).weight(.bold))
+                .monospacedDigit()
+                .foregroundStyle(tint == .secondary ? Color.primary : tint)
+                .lineLimit(1)
+        }
     }
 }
 
@@ -171,7 +157,7 @@ struct ProgressBarView: View {
         GeometryReader { geometry in
             let totalWidth = geometry.size.width
             let barHeight = geometry.size.height
-            let assuredRatio = context.state.assuredTimeSeconds / context.state.limitTimeSeconds
+            let assuredRatio = context.assuredRatio
             let greenWidth = totalWidth * assuredRatio
             let orangeWidth = totalWidth * (1.0 - assuredRatio)
             let progress = min(context.state.progress, 1.0) // Cap at 100% (limit)
@@ -244,11 +230,13 @@ struct CompactLeadingView: View {
 
     var body: some View {
         HStack(spacing: 4) {
-            Image(systemName: HOTActivityAttributes.sfSymbolForPrecipitation(context.state.precipitationType))
-                .foregroundStyle(.cyan)
+            Image(systemName: context.weatherSymbol)
+                .foregroundStyle(WeatherStyle.tint)
+            Image(systemName: "drop.fill")
+                .font(.system(size: 9, weight: .semibold))
+                .foregroundStyle(context.fluidColor)
             Text(HOTActivityAttributes.fluidTypeRoman(context.state.fluidType))
-                .font(.caption)
-                .fontWeight(.bold)
+                .font(.system(.caption, design: .rounded).weight(.bold))
         }
     }
 }
@@ -259,22 +247,12 @@ struct CompactTrailingView: View {
     var body: some View {
         HStack(spacing: 4) {
             Circle()
-                .fill(statusColor)
+                .fill(context.statusColor)
                 .frame(width: 8, height: 8)
             Text(context.state.limitTimeZulu)
-                .font(.caption)
-                .fontWeight(.medium)
+                .font(.system(.caption, design: .rounded).weight(.semibold))
                 .monospacedDigit()
         }
-    }
-
-    private var statusColor: Color {
-        if context.state.progress >= 1.0 {
-            return .red
-        } else if context.state.progress >= context.state.assuredTimeSeconds / context.state.limitTimeSeconds {
-            return .orange
-        }
-        return .green
     }
 }
 
@@ -282,17 +260,8 @@ struct MinimalView: View {
     let context: ActivityViewContext<HOTActivityAttributes>
 
     var body: some View {
-        Image(systemName: HOTActivityAttributes.sfSymbolForPrecipitation(context.state.precipitationType))
-            .foregroundStyle(statusColor)
-    }
-
-    private var statusColor: Color {
-        if context.state.progress >= 1.0 {
-            return .red
-        } else if context.state.progress >= context.state.assuredTimeSeconds / context.state.limitTimeSeconds {
-            return .orange
-        }
-        return .cyan
+        Image(systemName: context.weatherSymbol)
+            .foregroundStyle(context.state.progress >= context.assuredRatio ? context.statusColor : WeatherStyle.tint)
     }
 }
 
@@ -301,12 +270,13 @@ struct ExpandedLeadingView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Image(systemName: HOTActivityAttributes.sfSymbolForPrecipitation(context.state.precipitationType))
+            Image(systemName: context.weatherSymbol)
                 .font(.title2)
-                .foregroundStyle(.cyan)
+                .foregroundStyle(WeatherStyle.tint)
+                .symbolRenderingMode(.hierarchical)
 
-            Text("\(Int(context.state.temperature))\u{00B0}\(context.state.temperatureUnit)")
-                .font(.caption)
+            Text(context.temperatureText)
+                .font(.system(.caption, design: .rounded).weight(.semibold))
                 .foregroundStyle(.secondary)
         }
         .padding(.leading, 6)
@@ -318,13 +288,10 @@ struct ExpandedTrailingView: View {
 
     var body: some View {
         VStack(alignment: .trailing, spacing: 4) {
-            Text("Type \(HOTActivityAttributes.fluidTypeRoman(context.state.fluidType))")
-                .font(.caption)
-                .fontWeight(.semibold)
-
-            Text("\(Int(context.state.fluidPercentage))/\(Int(context.state.waterPercentage))")
-                .font(.caption2)
-                .foregroundStyle(.secondary)
+            ContextPill(systemImage: "drop.fill", tint: context.fluidColor, text: context.fluidText)
+            if context.state.flapsExtended {
+                ContextPill(systemImage: "chevron.down.right.2", tint: .orange, text: "\u{00D7}0.76", emphasized: true)
+            }
         }
         .padding(.trailing, 6)
     }
@@ -334,15 +301,13 @@ struct ExpandedCenterView: View {
     let context: ActivityViewContext<HOTActivityAttributes>
 
     var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 4) {
             Text(context.state.weatherCondition)
-                .font(.caption)
-                .fontWeight(.medium)
+                .font(.system(.caption, design: .rounded).weight(.semibold))
+                .lineLimit(1)
 
             if !context.state.isRunning {
-                Text("PAUSED")
-                    .font(.caption2)
-                    .foregroundStyle(.yellow)
+                PausedPill()
             }
         }
     }
@@ -355,55 +320,39 @@ struct ExpandedBottomView: View {
         VStack(spacing: 8) {
             // Mini progress bar
             GeometryReader { geometry in
-                let progress = min(context.state.progress, 1.2)
+                let progress = min(context.state.progress, 1.0)
 
                 ZStack(alignment: .leading) {
                     Capsule()
                         .fill(Color.gray.opacity(0.3))
 
                     Capsule()
-                        .fill(progressColor)
-                        .frame(width: geometry.size.width * min(progress, 1.0))
+                        .fill(context.statusColor)
+                        .frame(width: geometry.size.width * progress)
                 }
             }
             .frame(height: 6)
 
             // Times
-            HStack {
-                Text(context.state.assuredTimeZulu)
-                    .font(.caption2)
-                    .foregroundStyle(.green)
-
+            HStack(alignment: .top) {
+                miniColumn(label: "Assured", tint: .green, value: context.state.assuredTimeZulu, alignment: .leading)
                 Spacer()
-
-                Text(formatElapsed(context.state.elapsedSeconds))
-                    .font(.caption2)
-                    .monospacedDigit()
-
+                miniColumn(label: "Elapsed", tint: .secondary, value: formatElapsed(context.state.elapsedSeconds, showHours: false), alignment: .center)
                 Spacer()
-
-                Text(context.state.limitTimeZulu)
-                    .font(.caption2)
-                    .foregroundStyle(.orange)
+                miniColumn(label: "Limit", tint: .orange, value: context.state.limitTimeZulu, alignment: .trailing)
             }
-            .padding(.leading, 6)
-            .padding(.trailing, 6)
+            .padding(.horizontal, 6)
         }
     }
 
-    private var progressColor: Color {
-        if context.state.progress >= 1.0 {
-            return .red
-        } else if context.state.progress >= context.state.assuredTimeSeconds / context.state.limitTimeSeconds {
-            return .orange
+    private func miniColumn(label: String, tint: Color, value: String, alignment: HorizontalAlignment) -> some View {
+        VStack(alignment: alignment, spacing: 2) {
+            StatLabel(text: label, tint: tint)
+            Text(value)
+                .font(.system(.caption, design: .rounded).weight(.bold))
+                .monospacedDigit()
+                .foregroundStyle(tint == .secondary ? Color.primary : tint)
         }
-        return .green
-    }
-
-    private func formatElapsed(_ seconds: TimeInterval) -> String {
-        let minutes = Int(seconds) / 60
-        let secs = Int(seconds) % 60
-        return String(format: "%02d:%02d", minutes, secs)
     }
 }
 
