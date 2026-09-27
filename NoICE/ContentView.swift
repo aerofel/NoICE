@@ -7,11 +7,13 @@
 
 import SwiftUI
 import HOTKit
+import HOTKitNearbyShare
 
 struct ContentView<Configuration: HOTConfiguration>: View {
     @ObservedObject var configuration: Configuration
     @ObservedObject var hotState: HOTState
 
+    @EnvironmentObject private var nearbyShare: NearbyShareService
     @Environment(\.colorScheme) private var colorScheme
 
     private var icy: Color {
@@ -156,26 +158,43 @@ struct ContentView<Configuration: HOTConfiguration>: View {
             settingsMenuContent
         } label: {
             Image(systemName: "gearshape.fill")
-                .font(.system(size: 20, weight: .semibold))
+                .font(.system(size: 18, weight: .semibold))
                 .foregroundStyle(icy)
-                .frame(width: 40, height: 40)
-                .background(
-                    Circle().fill(
-                        colorScheme == .dark
-                            ? Color.white.opacity(0.08)
-                            : Color(red: 0.1, green: 0.3, blue: 0.6).opacity(0.08)
-                    )
-                )
-                .overlay(
-                    Circle().strokeBorder(
-                        colorScheme == .dark ? Color.white.opacity(0.12) : Color.white.opacity(0.7),
-                        lineWidth: 0.5
-                    )
-                )
-                .contentShape(Circle())
+                .headerCircle()
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Settings")
+    }
+
+    private var shareButton: some View {
+        NearbyShareButton(service: nearbyShare, tint: icy) {
+            HOTShareSnapshot.capture(
+                state: hotState,
+                configuration: configuration,
+                db: nearbyShare.localInfo.db,
+                sender: nearbyShare.localInfo.name
+            )
+        }
+    }
+
+    /// "Sent to 2 devices" after a share.
+    @ViewBuilder
+    private var shareToast: some View {
+        if case .finished(let delivered, let total) = nearbyShare.sendState {
+            let text = delivered == total
+                ? (delivered == 1 ? "Sent to 1 device" : "Sent to \(delivered) devices")
+                : (delivered == 0 ? "Nearby devices could not be reached" : "Sent to \(delivered) of \(total) devices")
+            Label(text, systemImage: delivered > 0 ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(delivered > 0 ? Color.green : Color.orange)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(Capsule().fill(.regularMaterial))
+                .overlay(Capsule().strokeBorder(Color.primary.opacity(0.08), lineWidth: 0.5))
+                .shadow(color: .black.opacity(0.15), radius: 10, y: 4)
+                .padding(.top, 8)
+                .transition(.move(edge: .top).combined(with: .opacity))
+        }
     }
 
     private var headerBackground: some View {
@@ -232,7 +251,10 @@ struct ContentView<Configuration: HOTConfiguration>: View {
             logoView
             titleView
             Spacer(minLength: 8)
-            settingsButton
+            VStack(spacing: 6) {
+                settingsButton
+                shareButton
+            }
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
@@ -246,10 +268,13 @@ struct ContentView<Configuration: HOTConfiguration>: View {
             headerView
 
             HOTView(configuration: configuration, hotState: hotState)
+                .overlay(alignment: .top) { shareToast }
+                .animation(.spring(response: 0.35, dampingFraction: 0.82), value: nearbyShare.sendState)
         }
     }
 }
 
 #Preview {
     ContentView(configuration: DefaultHOTConfiguration(), hotState: HOTState())
+        .environmentObject(NearbyShareService())
 }

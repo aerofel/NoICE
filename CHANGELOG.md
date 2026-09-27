@@ -4,6 +4,19 @@ All notable changes to NoICE are documented here. Newest entries first.
 
 ## Unreleased
 
+### Added
+- Nearby Share: a new button under the settings gear sends the running timer, weather condition,
+  temperature, fluid, mix, flaps and FAA/TCA source to every nearby iPhone, iPad or Android device
+  with No-ICE open and the same table seasons. It uses Bluetooth LE with no pairing. The button is
+  grayed out while nobody is nearby and glows with a device count when someone is. Receivers
+  confirm in a sheet that summarises the share and warns before replacing a running timer.
+  Protocol: `docs/NEARBY_SHARE_PROTOCOL.md`.
+
+### Fixed
+- Live Activity lock screen: the context strip no longer truncates every pill ("-6…", "IV ·…").
+  Condition and temperature are on the first row; fluid, flaps and PAUSED are on the second.
+- A fluid dropped because the temperature left its band no longer comes back on relaunch.
+
 ### Changed
 - Redesigned the fluid picker. Fluid types are pills with the real dye colours and a count of
   products approved for the current condition; types with nothing approved are dimmed.

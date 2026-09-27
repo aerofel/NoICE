@@ -114,3 +114,34 @@
 - Always check new layouts at a larger Dynamic Type size: `xcrun simctl ui <udid> content_size
   extra-extra-large` (or `accessibility-medium`), reset with `content_size large`. The chips wrapped
   "01:1 / 2" on the real phone while the default-size simulator looked fine.
+
+## 2026-09-26 — Live Activity context strip truncation
+
+- The lock-screen Live Activity can't scroll, so the in-app pill strip (weather, temp, fluid, flaps, PAUSED)
+  in one `HStack` truncated every pill to "-6…", "IV ·…" on a real phone. The weather pill had
+  `layoutPriority(-1)` and shrank to its icon only. Split the strip into two rows (weather + temp /
+  fluid + flaps + PAUSED) and use `.fixedSize()` on the short pills so only the weather text can truncate.
+- The lock-screen presentation is cut off above ~160 pt, so the extra row was paid for by reducing the
+  vertical padding from 16 to 12 and the VStack spacing from 10 to 8.
+
+## 2026-09-26 — Nearby Share over BLE
+
+- iOS `CBPeripheralManager` can only advertise a local name and service UUIDs (no service or
+  manufacturer data), so compatibility info (table seasons) is read from a GATT INFO
+  characteristic after connecting, not from the advertisement.
+- `maximumWriteValueLength(for: .withResponse)` is always 512 on iOS (it assumes prepared/long
+  writes). To keep one frame per ATT packet, size chunks with `.withoutResponse` (= MTU − 3) and
+  still write with response.
+- `CBPeripheralManager` delivers a batch of write requests; respond **once**, to `requests[0]`.
+  A static characteristic value (INFO) lets CoreBluetooth answer long reads by itself.
+- Condition titles are the loader's cleaned titles ("Light freezing rain", not the XML's
+  "Light Freezing Rain"). A payload must carry the cleaned title or the receiver can't match it.
+- `HOTView` only restored its selection in `onAppear`. Applying external state needed a
+  published revision counter plus a guard in the `sourceLabel` onChange, or the FAA/TCA switch
+  handler wiped the selection that had just been applied.
+- The Xcode 27 simulator runtime disappeared again (all devices "unavailable"); re-downloaded
+  with `xcodebuild -downloadPlatform iOS`. HOTKit tests can't run on a device (no host app) or
+  on Mac Catalyst (ActivityKit unavailable), so the simulator is the only option.
+- Headless simulator checks of the share UI: launch flags `-NearbyShareDemo YES` (fake peers),
+  `-NearbyShareDemoIncoming YES` (incoming sheet), `-NearbyShareDemoAutoAccept YES` (applies it
+  after 2 s). These are DEBUG only.

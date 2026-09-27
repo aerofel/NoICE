@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E1CF3202F1AD9000047178B /* HOTKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6E1CF31F2F1AD9000047178B /* HOTKit */; };
+		AB5E0B012F1ADC000047178B /* HOTKitNearbyShare in Frameworks */ = {isa = PBXBuildFile; productRef = 6E1CF3512F1ADB000047178B /* HOTKitNearbyShare */; };
 		6E1CF3302F1ADA000047178B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1CF32F2F1ADA000047178B /* WidgetKit.framework */; };
 		6E1CF3322F1ADA000047178B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1CF3312F1ADA000047178B /* SwiftUI.framework */; };
 		6E1CF33A2F1ADA000047178B /* NoICEWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6E1CF32D2F1ADA000047178B /* NoICEWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -77,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E1CF3202F1AD9000047178B /* HOTKit in Frameworks */,
+				AB5E0B012F1ADC000047178B /* HOTKitNearbyShare in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +146,7 @@
 			name = NoICE;
 			packageProductDependencies = (
 				6E1CF31F2F1AD9000047178B /* HOTKit */,
+				6E1CF3512F1ADB000047178B /* HOTKitNearbyShare */,
 			);
 			productName = NoICE;
 			productReference = 6E1CF30E2F1AD8E30047178B /* NoICE.app */;
@@ -387,6 +390,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "No-ICE";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "No-ICE uses Bluetooth to find nearby devices running No-ICE and share the timer, weather, temperature, fluid and flaps with them.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -429,6 +433,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "No-ICE";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "No-ICE uses Bluetooth to find nearby devices running No-ICE and share the timer, weather, temperature, fluid and flaps with them.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -557,12 +562,17 @@
 			repositoryURL = "https://github.com/aerofel/HOTKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.0;
+				minimumVersion = 1.4.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6E1CF3512F1ADB000047178B /* HOTKitNearbyShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E1CF31E2F1AD9000047178B /* XCRemoteSwiftPackageReference "HOTKit" */;
+			productName = HOTKitNearbyShare;
+		};
 		6E1CF31F2F1AD9000047178B /* HOTKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6E1CF31E2F1AD9000047178B /* XCRemoteSwiftPackageReference "HOTKit" */;

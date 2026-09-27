@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aerofel/HOTKit.git",
       "state" : {
-        "revision" : "47747b92cd92134459f5875a5a658205811dd10d",
-        "version" : "1.3.0"
+        "revision" : "023aa7ac18cc880f58ed88a91a25eab0eb23ebf6",
+        "version" : "1.4.0"
       }
     },
     {

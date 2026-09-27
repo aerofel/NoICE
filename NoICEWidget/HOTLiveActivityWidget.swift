@@ -105,18 +105,28 @@ struct LockScreenView: View {
     let context: ActivityViewContext<HOTActivityAttributes>
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            // Context strip, same as the in-app timer card
-            HStack(spacing: 6) {
-                ContextPill(systemImage: context.weatherSymbol, tint: WeatherStyle.tint, text: context.state.weatherCondition)
-                    .layoutPriority(-1)
-                ContextPill(systemImage: "thermometer.medium", tint: WeatherStyle.tint, text: context.temperatureText)
-                ContextPill(systemImage: "drop.fill", tint: context.fluidColor, text: context.fluidText)
-                if context.state.flapsExtended {
-                    ContextPill(systemImage: "chevron.down.right.2", tint: .orange, text: "\u{00D7}0.76", emphasized: true)
+        VStack(alignment: .leading, spacing: 8) {
+            // Context strip, same pills as the in-app timer card. The app scrolls them
+            // horizontally; a Live Activity can't, so they are split over two rows.
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(spacing: 6) {
+                    ContextPill(systemImage: context.weatherSymbol, tint: WeatherStyle.tint, text: context.state.weatherCondition)
+                    ContextPill(systemImage: "thermometer.medium", tint: WeatherStyle.tint, text: context.temperatureText)
+                        .fixedSize()
+                    Spacer(minLength: 0)
                 }
-                if !context.state.isRunning {
-                    PausedPill()
+                HStack(spacing: 6) {
+                    ContextPill(systemImage: "drop.fill", tint: context.fluidColor, text: context.fluidText)
+                        .fixedSize()
+                    if context.state.flapsExtended {
+                        ContextPill(systemImage: "chevron.down.right.2", tint: .orange, text: "\u{00D7}0.76", emphasized: true)
+                            .fixedSize()
+                    }
+                    Spacer(minLength: 0)
+                    if !context.state.isRunning {
+                        PausedPill()
+                            .fixedSize()
+                    }
                 }
             }
 
@@ -132,7 +142,8 @@ struct LockScreenView: View {
                 timeColumn(label: "Limit", tint: .orange, zulu: context.state.limitTimeZulu, value: nil, alignment: .trailing)
             }
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.vertical, 12)
         .activityBackgroundTint(Color.black.opacity(0.8))
     }
 
