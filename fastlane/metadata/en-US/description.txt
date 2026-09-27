@@ -1,6 +1,6 @@
-No-ICE is the streamlined hold-over time companion built for professional pilots. Get instant access to official FAA and Transport Canada de-icing tables, track your hold-over times with precision, and stay informed from cockpit to lock screen.
+No-ICE is the streamlined hold-over time companion built for professional pilots. Get instant access to official FAA and Transport Canada de-icing tables, track your hold-over times with precision, share them with your crew, and stay informed from cockpit to lock screen.
 
-Whether you're operating in light freezing drizzle or heavy snow, No-ICE filters through complex hold-over time tables in seconds — so you can focus on what matters: a safe departure.
+Whether you're operating in light freezing drizzle or heavy snow, No-ICE filters through complex hold-over time tables in seconds, so you can focus on what matters: a safe departure.
 
 OFFICIAL DATA, ALWAYS CURRENT
 - FAA and Transport Canada (TCA) hold-over time tables, Winter 2026-27 edition
@@ -8,12 +8,24 @@ OFFICIAL DATA, ALWAYS CURRENT
 - All weather conditions: snow, freezing rain, freezing drizzle, frost, and more
 - Multiple fluid concentrations and temperature ranges
 
+FAST FLUID SELECTION
+- Fluid types as colour-coded pills with the number of approved products
+- Search products by brand and name, with your three most recent fluids at the top
+- Mix chips (100/0, 75/25, 50/50) showing assured and limit times at a glance
+- The selected fluid in a clear hero card
+
 PRECISION TIMER
-- One-tap start, pause, and resume with animated visual feedback
-- Elapsed time and UTC/Zulu start time displayed at a glance
+- One-tap start, hold, and resume with animated visual feedback
+- Elapsed time and UTC/Zulu times displayed at a glance
 - Assured time (green) and Limit time (orange) calculated in real time
 - Automatic flaps/slats factor (0.76 reduction) when extended
-- Freeze timestamps to log each check during multi-step procedures
+- Hold marks to log each check during multi-step procedures
+
+NEARBY SHARE
+- Send the running timer, weather, temperature, fluid, mix and flaps to nearby iPhones and iPads with one tap
+- Bluetooth only: no pairing, no network, works on the ramp
+- The receiver reviews a summary and confirms before anything changes
+- Only devices with the same table season can share
 
 LIVE ACTIVITY & DYNAMIC ISLAND
 - Monitor your hold-over countdown directly from the lock screen
@@ -25,10 +37,10 @@ LIVE ACTIVITY & DYNAMIC ISLAND
 BUILT FOR THE FLIGHT DECK
 - Celsius and Fahrenheit support
 - Smart weather filtering by precipitation type and intensity
-- Persistent state — resume exactly where you left off after a restart
+- Persistent state: resume exactly where you left off after a restart
 - Haptic feedback for confident, eyes-free operation
 - Optimized for iPhone and iPad
 
-No-ICE removes the complexity from hold-over time management. No manuals, no guesswork — just the data you need, when you need it.
+No-ICE removes the complexity from hold-over time management. No manuals, no guesswork: just the data you need, when you need it.
 
 Safe flights start with No-ICE.

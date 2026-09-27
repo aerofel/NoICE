@@ -145,3 +145,19 @@
 - Headless simulator checks of the share UI: launch flags `-NearbyShareDemo YES` (fake peers),
   `-NearbyShareDemoIncoming YES` (incoming sheet), `-NearbyShareDemoAutoAccept YES` (applies it
   after 2 s). These are DEBUG only.
+
+## 2026-09-27 — 2.0 release: HOTKit 1.4.0 and a shared Nearby Share module
+
+- The CoreBluetooth transport and share UI now live in HOTKit as a separate library product,
+  `HOTKitNearbyShare`, so the widget extension (which links only `HOTKit`) never pulls in
+  CoreBluetooth. Types used by the app must be `public`, including the CB delegate witnesses.
+  The views need `@available(iOS 17.0, *)` because the package floor is 16.2.
+- Adding a package product to the target by hand in pbxproj takes a PBXBuildFile, a frameworks
+  phase entry, a `packageProductDependencies` entry and an XCSwiftPackageProductDependency.
+  **Grep every new 24-hex ID before inserting it**: `6E1CF3502F1ADB000047178B` already existed
+  (the widget folder's exception set).
+- The live metadata for a newly created ASC version starts with empty promo text and release
+  notes; `deliver download_metadata` into /tmp is a quick way to see what the store holds.
+- A share takes about 1 s on tap: connect, service and characteristic discovery, 2–4
+  acknowledged writes, all sequential per peer. Keeping the INFO discovery connection open and
+  asking for low connection latency would bring it to about 150 ms (deliberately not done in 2.0).

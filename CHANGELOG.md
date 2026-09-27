@@ -2,7 +2,7 @@
 
 All notable changes to NoICE are documented here. Newest entries first.
 
-## Unreleased
+## 2.0 — 2026-09-27 17:39 UTC
 
 ### Added
 - Nearby Share: a new button under the settings gear sends the running timer, weather condition,

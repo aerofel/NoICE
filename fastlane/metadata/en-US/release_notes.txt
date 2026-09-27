@@ -1,28 +1,30 @@
-Updated for the 2026-27 winter season.
+No-ICE 2.0 is a major update: a redesigned app and a new way to work as a crew.
 
-NEW HOLD-OVER TIME TABLES
-- FAA and Transport Canada tables updated to the Winter 2026-27 edition
-- Expanded coverage: 56 tables per source, up from 50 (FAA) and 53 (TCA)
+NEARBY SHARE
+- A new button under the settings gear sends your running timer, weather condition, temperature, fluid, mix, flaps and FAA/TCA source to every nearby iPhone or iPad with No-ICE open
+- No pairing and no network needed: it uses Bluetooth and works on the ramp
+- The button lights up with a device count when someone is in range
+- The receiving crew member sees a summary and confirms before anything changes, with a warning if it would replace their own running timer
+- Only devices carrying the same FAA and Transport Canada table season can share
 
-NEW FLUIDS
-- Type II: LNT Solutions P250
-- Type IV: LNT Solutions P450, MAX TECH LLC MTL 4-EG, and MAX TECH LLC MTL 4-PG
+REDESIGNED FLUID PICKER
+- Fluid types as colour-coded pills with the count of approved products
+- Products listed by brand and name, with search and your three most recent fluids
+- Mix chips (100/0, 75/25, 50/50) showing assured and limit times, one tap to switch
+- A hero card for the selected fluid that mirrors the Live Activity
 
-WITHDRAWN
-- AVIAFLUID AVIAFlight EG (Type IV) has been withdrawn by the publishers and removed. Its PG counterpart is unaffected and remains in the tables.
+REDESIGNED WEATHER AND TIMER
+- Temperature steppers, precipitation and intensity filter chips, and a clear hero row for the selected condition
+- Timer card with Zulu time pills, a context strip, and hold-over durations shown before start
+- Flaps/slats as two clear cards, available as soon as a condition is selected
+- Header status line showing source, season and unit, one tap to change them
 
-BROADER WEATHER COVERAGE
-- Transport Canada tables now include moderate snow mixed with rain, and snow mixed with freezing fog
-- Generic active frost tables added across Type II, III, and IV in the FAA source
-- Both sources now carry the same 56 tables and the same eleven precipitation conditions, so switching source no longer changes which weather types are offered
+LIVE ACTIVITY
+- Lock screen layout rebuilt on two rows so condition, temperature, fluid, flaps and paused state are always readable
+- Dynamic Island uses the fluid colours
 
-RENAMED
-- The three AllClear AeroClear MAX Type III tables now read "applied unheated -- low/middle/high speed ramp test". Same fluid, same numbers; only the label changed.
-
-REFINEMENTS
-- Improved Dynamic Island layout with cleaner edge spacing in the expanded view
-- Corrected precipitation-condition labels carried over from the source documents
+FIXES
+- A fluid dropped because the temperature left its band no longer reappears after relaunch
+- Text scales instead of wrapping at large Dynamic Type sizes
 
 Always cross-check against the current official FAA or Transport Canada tables and your operator's procedures.
-
-Safe flights this winter.

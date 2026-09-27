@@ -16,6 +16,9 @@ visible from the ramp to the runway without unlocking the phone.
 - **Live Activity + Dynamic Island** — the countdown continues on the lock screen.
 - **Flaps factor** — applies the 0.76 multiplier for extended flaps.
 - **Celsius and Fahrenheit** throughout.
+- **Nearby Share** — one tap sends the timer, weather, temperature, fluid, mix, flaps and source
+  to nearby devices running No-ICE over Bluetooth LE, with no pairing; the receiver confirms.
+  Protocol: [docs/NEARBY_SHARE_PROTOCOL.md](docs/NEARBY_SHARE_PROTOCOL.md).
 
 ## Data sources
 
@@ -34,7 +37,9 @@ Both are regenerated from the published regulatory PDFs each season. See
 ```
 NoICE/          iOS app target — header, settings, source switching
 NoICEWidget/    Widget extension — Live Activity and Dynamic Island views
-../HOTKit/      Swift package — data models, XML loader, and the main HOT views
+../HOTKit/      Swift package (remote, github.com/aerofel/HOTKit) — data models, XML loader,
+                the main HOT views, and the HOTKitNearbyShare product (Bluetooth transport + UI)
+docs/           Nearby Share protocol specification
 fastlane/       App Store metadata and delivery config
 ```
 
@@ -43,7 +48,7 @@ widget can share it.
 
 ## Building
 
-Requires Xcode with an iOS 16.2+ deployment target.
+Requires Xcode with an iOS 17.0+ deployment target.
 
 ```sh
 xcodebuild build -project NoICE.xcodeproj -scheme NoICE \
