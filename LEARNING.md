@@ -174,3 +174,16 @@
   folders it must be excluded from the target through a membership exception set, or the build fails with
   "Multiple commands produce Info.plist". The code queries 5 schemes (README lists 4): `dopamine` too.
 - `-SimulateJailbreak YES` (DEBUG) shows the blocked screen headlessly in the simulator.
+
+## 2026-10-03 — Own jailbreak checks instead of IOSSecuritySuite
+
+- No-ICE is a **paid** app: IOSSecuritySuite ≥ 2.0 only allows that on its paid Enterprise plan (1.9.11 was
+  BSD-2 but misses rootless `/var/jb` jailbreaks). freeRASP sends data to Talsec and you can't turn that off.
+  Hence `JailbreakChecks.swift`, our own code, shared verbatim with sQRH.
+- IOSSecuritySuite's dyld check matches loose substrings ("shadow", "liberty", "substitute"). That's fine for a
+  warning, risky for a block: ours matches exact file names or tweak install folders only.
+- Its fork() check lets the child process carry on running app code. Call `_exit(0)` in the child.
+- The real checks can't be exercised in the simulator (it sees the Mac file system), so they're compiled
+  out there. Verify a stock-device pass on a physical iPhone/iPad before release.
+- `UIDevice.userInterfaceIdiom` is `.pad` for the iPad app on a Mac: check `isiOSAppOnMac` first, then
+  allow only `.phone`/`.pad` (excludes Vision Pro's iPad compatibility mode).

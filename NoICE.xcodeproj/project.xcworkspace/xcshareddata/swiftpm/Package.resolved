@@ -1,5 +1,5 @@
 {
-  "originHash" : "8dc55c5f914d63143b55816917ad59726f9e8d3b26f0f2774bbfce8e03de11f3",
+  "originHash" : "c961584fa42bfd266d296f43c429dbe83cc6a875254736203a3eea6c05b12b16",
   "pins" : [
     {
       "identity" : "hotkit",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "023aa7ac18cc880f58ed88a91a25eab0eb23ebf6",
         "version" : "1.4.0"
-      }
-    },
-    {
-      "identity" : "iossecuritysuite",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/securing/IOSSecuritySuite.git",
-      "state" : {
-        "revision" : "7436aea705a6c7ad6013edaaeaf051667cdd4beb",
-        "version" : "2.3.0"
       }
     },
     {

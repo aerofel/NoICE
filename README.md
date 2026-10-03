@@ -20,9 +20,9 @@ visible from the ramp to the runway without unlocking the phone.
   to nearby devices running No-ICE over Bluetooth LE, with no pairing; the receiver confirms.
   Protocol: [docs/NEARBY_SHARE_PROTOCOL.md](docs/NEARBY_SHARE_PROTOCOL.md).
 - **Jailbreak detection** — on a jailbroken iPhone or iPad the app refuses to run and shows a
-  "Device integrity compromised" notice ([IOSSecuritySuite](https://github.com/securing/IOSSecuritySuite),
-  free under its EULA for companies of up to 100 people that don't charge for the app). The check is
-  skipped in the simulator and on Apple Silicon Macs. `-SimulateJailbreak YES` (DEBUG) shows the notice.
+  "Device integrity compromised" notice. The checks are offline and our own code (`JailbreakChecks.swift`,
+  no third-party SDK). They run only on iPhone and iPad, never in the simulator, on a Mac or on Vision Pro.
+  `-SimulateJailbreak YES` (DEBUG) shows the notice.
 
 ## Data sources
 

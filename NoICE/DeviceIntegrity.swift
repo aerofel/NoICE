@@ -6,14 +6,14 @@
 //
 
 import Foundation
-import IOSSecuritySuite
+import UIKit
 import os
 
 enum DeviceIntegrity {
     /// Evaluated once, on first access (at launch, on the main thread: canOpenURL needs it).
     static let isCompromised: Bool = evaluate()
 
-    private static let logger = Logger(subsystem: "org.looping.NoICE", category: "DeviceIntegrity")
+    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "NoICE", category: "DeviceIntegrity")
 
     private static func evaluate() -> Bool {
         #if DEBUG
@@ -24,15 +24,16 @@ enum DeviceIntegrity {
         #if targetEnvironment(simulator)
         return false
         #else
-        // The iPad app on an Apple Silicon Mac sees macOS paths (/bin/bash, /usr/sbin/sshd, ...)
-        // that read as a jailbreak; IOSSecuritySuite is meant for iOS/iPadOS only.
-        if ProcessInfo.processInfo.isiOSAppOnMac { return false }
+        // Only iPhone and iPad are checked. The iPad app on an Apple Silicon Mac (or on Vision Pro)
+        // sees that platform's file system, where /bin/bash and friends are normal.
+        let process = ProcessInfo.processInfo
+        if process.isiOSAppOnMac || process.isMacCatalystApp { return false }
+        let idiom = UIDevice.current.userInterfaceIdiom
+        guard idiom == .phone || idiom == .pad else { return false }
 
-        let status = IOSSecuritySuite.amIJailbrokenWithFailMessage()
-        if status.jailbroken {
-            logger.error("Jailbreak detected: \(status.failMessage, privacy: .public)")
-        }
-        return status.jailbroken
+        guard let finding = JailbreakChecks.firstFinding() else { return false }
+        logger.error("Jailbreak detected: \(finding, privacy: .public)")
+        return true
         #endif
     }
 }

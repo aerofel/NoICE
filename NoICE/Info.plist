@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Jailbreak package managers and tools queried by IOSSecuritySuite (canOpenURL). -->
+	<!-- Jailbreak package managers and tools queried by JailbreakChecks (canOpenURL). -->
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>undecimus</string>
@@ -10,6 +10,7 @@
 		<string>zbra</string>
 		<string>filza</string>
 		<string>dopamine</string>
+		<string>palera1n</string>
 	</array>
 </dict>
 </plist>

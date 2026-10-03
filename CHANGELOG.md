@@ -2,6 +2,23 @@
 
 All notable changes to NoICE are documented here. Newest entries first.
 
+## Unreleased — 2026-10-03 09:45 UTC
+
+### Changed
+- Jailbreak detection no longer uses IOSSecuritySuite, because its EULA doesn't allow paid apps on the
+  free plans. `NoICE/JailbreakChecks.swift` now runs the same families of checks offline, in about
+  200 lines of our own code:
+  - jailbreak files, including rootless `/var/jb` and RootHide's `/var/.jbroot-*`, seen through
+    lstat, access and FileManager
+  - symlinked system folders
+  - a read-write system volume and writes outside the sandbox
+  - fork() (the child exits at once)
+  - injected tweak libraries, matched by exact name or install folder
+  - bypass-tweak classes
+  - jailbreak URL schemes, with `palera1n` added
+- Only iPhone and iPad are checked: the app runs normally on a Mac (Designed for iPad, Catalyst) and on
+  Vision Pro.
+
 ## Unreleased — 2026-10-03 07:13 UTC
 
 ### Added
