@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E1CF3202F1AD9000047178B /* HOTKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6E1CF31F2F1AD9000047178B /* HOTKit */; };
 		AB5E0B012F1ADC000047178B /* HOTKitNearbyShare in Frameworks */ = {isa = PBXBuildFile; productRef = 6E1CF3512F1ADB000047178B /* HOTKitNearbyShare */; };
+		AB5E0B022F1ADC000047178B /* IOSSecuritySuite in Frameworks */ = {isa = PBXBuildFile; productRef = AB5E0B042F1ADC000047178B /* IOSSecuritySuite */; };
 		6E1CF3302F1ADA000047178B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1CF32F2F1ADA000047178B /* WidgetKit.framework */; };
 		6E1CF3322F1ADA000047178B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1CF3312F1ADA000047178B /* SwiftUI.framework */; };
 		6E1CF33A2F1ADA000047178B /* NoICEWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6E1CF32D2F1ADA000047178B /* NoICEWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -47,6 +48,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AB5E0B052F1ADC000047178B /* Exceptions for "NoICE" folder in "NoICE" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6E1CF30D2F1AD8E30047178B /* NoICE */;
+		};
 		6E1CF3502F1ADB000047178B /* Exceptions for "NoICEWidget" folder in "NoICEWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -59,6 +67,9 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6E1CF3102F1AD8E30047178B /* NoICE */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AB5E0B052F1ADC000047178B /* Exceptions for "NoICE" folder in "NoICE" target */,
+			);
 			path = NoICE;
 			sourceTree = "<group>";
 		};
@@ -79,6 +90,7 @@
 			files = (
 				6E1CF3202F1AD9000047178B /* HOTKit in Frameworks */,
 				AB5E0B012F1ADC000047178B /* HOTKitNearbyShare in Frameworks */,
+				AB5E0B022F1ADC000047178B /* IOSSecuritySuite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +159,7 @@
 			packageProductDependencies = (
 				6E1CF31F2F1AD9000047178B /* HOTKit */,
 				6E1CF3512F1ADB000047178B /* HOTKitNearbyShare */,
+				AB5E0B042F1ADC000047178B /* IOSSecuritySuite */,
 			);
 			productName = NoICE;
 			productReference = 6E1CF30E2F1AD8E30047178B /* NoICE.app */;
@@ -204,6 +217,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6E1CF31E2F1AD9000047178B /* XCRemoteSwiftPackageReference "HOTKit" */,
+				AB5E0B032F1ADC000047178B /* XCRemoteSwiftPackageReference "IOSSecuritySuite" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6E1CF30F2F1AD8E30047178B /* Products */;
@@ -387,6 +401,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NoICE/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "No-ICE";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -430,6 +445,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NoICE/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "No-ICE";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -565,6 +581,14 @@
 				minimumVersion = 1.4.0;
 			};
 		};
+		AB5E0B032F1ADC000047178B /* XCRemoteSwiftPackageReference "IOSSecuritySuite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/securing/IOSSecuritySuite.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -582,6 +606,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E1CF31E2F1AD9000047178B /* XCRemoteSwiftPackageReference "HOTKit" */;
 			productName = HOTKit;
+		};
+		AB5E0B042F1ADC000047178B /* IOSSecuritySuite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB5E0B032F1ADC000047178B /* XCRemoteSwiftPackageReference "IOSSecuritySuite" */;
+			productName = IOSSecuritySuite;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -2,6 +2,16 @@
 
 All notable changes to NoICE are documented here. Newest entries first.
 
+## Unreleased — 2026-10-03 07:13 UTC
+
+### Added
+- Jailbreak detection (for the civil-aviation approval file): on a jailbroken iPhone or iPad the app
+  shows a full-screen "Device integrity compromised" notice instead of the hold-over screen, and
+  Nearby Share never starts. Detection uses IOSSecuritySuite 2.3.0 (files, sandbox writes, fork,
+  symlinks, injected libraries, jailbreak URL schemes declared in `NoICE/Info.plist`). It is skipped
+  in the simulator and when the iPad app runs on a Mac. In DEBUG builds, `-SimulateJailbreak YES`
+  shows the notice.
+
 ## 2.0 — 2026-09-27 17:39 UTC
 
 ### Added

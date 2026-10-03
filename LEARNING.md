@@ -161,3 +161,16 @@
 - A share takes about 1 s on tap: connect, service and characteristic discovery, 2–4
   acknowledged writes, all sequential per peer. Keeping the INFO discovery connection open and
   asking for low connection latency would bring it to about 150 ms (deliberately not done in 2.0).
+
+## 2026-10-03 — Jailbreak detection (IOSSecuritySuite)
+
+- IOSSecuritySuite is **not MIT**: its EULA is free only for a company of ≤ 100 people that doesn't
+  charge for the app; paid plans above that. Re-check if NoICE becomes paid or is distributed by an operator.
+- Its README says not to run it on Apple Silicon Macs: the "Designed for iPad" app sees macOS paths
+  (/bin/bash, /usr/sbin/sshd) and would be reported as jailbroken. Guard with
+  `ProcessInfo.processInfo.isiOSAppOnMac` plus `#if targetEnvironment(simulator)`.
+- The URL-scheme check needs `LSApplicationQueriesSchemes`, an array that `INFOPLIST_KEY_*` can't express.
+  `NoICE/Info.plist` now holds it (`INFOPLIST_FILE`, merged with the generated plist). With synchronized
+  folders it must be excluded from the target through a membership exception set, or the build fails with
+  "Multiple commands produce Info.plist". The code queries 5 schemes (README lists 4): `dopamine` too.
+- `-SimulateJailbreak YES` (DEBUG) shows the blocked screen headlessly in the simulator.
