@@ -1,30 +1,9 @@
-No-ICE 2.0 is a major update: a redesigned app and a new way to work as a crew.
+No-ICE 2.1 adds a device integrity check.
 
-NEARBY SHARE
-- A new button under the settings gear sends your running timer, weather condition, temperature, fluid, mix, flaps and FAA/TCA source to every nearby iPhone or iPad with No-ICE open
-- No pairing and no network needed: it uses Bluetooth and works on the ramp
-- The button lights up with a device count when someone is in range
-- The receiving crew member sees a summary and confirms before anything changes, with a warning if it would replace their own running timer
-- Only devices carrying the same FAA and Transport Canada table season can share
-
-REDESIGNED FLUID PICKER
-- Fluid types as colour-coded pills with the count of approved products
-- Products listed by brand and name, with search and your three most recent fluids
-- Mix chips (100/0, 75/25, 50/50) showing assured and limit times, one tap to switch
-- A hero card for the selected fluid that mirrors the Live Activity
-
-REDESIGNED WEATHER AND TIMER
-- Temperature steppers, precipitation and intensity filter chips, and a clear hero row for the selected condition
-- Timer card with Zulu time pills, a context strip, and hold-over durations shown before start
-- Flaps/slats as two clear cards, available as soon as a condition is selected
-- Header status line showing source, season and unit, one tap to change them
-
-LIVE ACTIVITY
-- Lock screen layout rebuilt on two rows so condition, temperature, fluid, flaps and paused state are always readable
-- Dynamic Island uses the fluid colours
-
-FIXES
-- A fluid dropped because the temperature left its band no longer reappears after relaunch
-- Text scales instead of wrapping at large Dynamic Type sizes
+DEVICE INTEGRITY CHECK
+- At launch, No-ICE checks that your iPhone or iPad has not been jailbroken
+- On a jailbroken device the app shows a clear notice instead of hold-over times, because the integrity of the app and its data can no longer be guaranteed there
+- The check runs entirely on the device: no network, no account, nothing is sent anywhere
+- Standard iPhones and iPads are unaffected, and No-ICE on Mac works exactly as before
 
 Always cross-check against the current official FAA or Transport Canada tables and your operator's procedures.

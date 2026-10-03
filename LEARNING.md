@@ -188,3 +188,8 @@
 - `UIDevice.userInterfaceIdiom` is `.pad` for the iPad app on a Mac: check `isiOSAppOnMac` first, then
   allow only `.phone`/`.pad` (excludes Vision Pro's iPad compatibility mode).
 - Device check (2026-10-03, iPhone 17 Pro + iPad Pro M4, stock): `devicectl device process launch --console --environment-variables '{"OS_ACTIVITY_DT_MODE":"enable"}'` mirrors the log to the terminal. Six "-canOpenURL: failed … -10814" lines (no app for the scheme) and no "Jailbreak detected" mean every check ran and passed: the URL schemes are the last check.
+
+## 2026-10-03 — 2.1 release
+- The 2.1 App Store version already existed on ASC (PREPARE_FOR_SUBMISSION) before deliver ran; `--app_version 2.1`
+  just aligned to it. Xcode Cloud run #4 was started with `POST /v1/ciBuildRuns` (workflow "Release iOS" + `main`
+  ref ids in memory). Pushes to main don't trigger it (manual start only).

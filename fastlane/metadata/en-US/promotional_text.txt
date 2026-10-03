@@ -1,1 +1,1 @@
-New in 2.0: share the running timer, weather, temperature, fluid and flaps with nearby iPhones and iPads in one tap. Plus a faster, redesigned fluid picker.
+New in 2.1: a device integrity check keeps No-ICE off jailbroken devices, fully offline. Still one tap to share your hold-over timer with nearby crew.

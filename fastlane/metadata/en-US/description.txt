@@ -39,6 +39,7 @@ BUILT FOR THE FLIGHT DECK
 - Smart weather filtering by precipitation type and intensity
 - Persistent state: resume exactly where you left off after a restart
 - Haptic feedback for confident, eyes-free operation
+- Device integrity check: refuses to run on a jailbroken iPhone or iPad, entirely offline
 - Optimized for iPhone and iPad
 
 No-ICE removes the complexity from hold-over time management. No manuals, no guesswork: just the data you need, when you need it.
