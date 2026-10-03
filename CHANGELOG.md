@@ -2,7 +2,7 @@
 
 All notable changes to NoICE are documented here. Newest entries first.
 
-## Unreleased — 2026-10-03 09:55 UTC
+## 2.1 — 2026-10-03 09:55 UTC
 
 ### Changed
 - The "Device integrity compromised" screen now has the app's header banner (logo, gradient title,
@@ -10,7 +10,7 @@ All notable changes to NoICE are documented here. Newest entries first.
   with the main screen. On the blocked screen it has no gear or share button, its status line can't be
   tapped, and it keeps the same height.
 
-## Unreleased — 2026-10-03 09:45 UTC
+## 2.1 — 2026-10-03 09:45 UTC
 
 ### Changed
 - Jailbreak detection no longer uses IOSSecuritySuite, because its EULA doesn't allow paid apps on the
@@ -27,7 +27,7 @@ All notable changes to NoICE are documented here. Newest entries first.
 - Only iPhone and iPad are checked: the app runs normally on a Mac (Designed for iPad, Catalyst) and on
   Vision Pro.
 
-## Unreleased — 2026-10-03 07:13 UTC
+## 2.1 — 2026-10-03 07:13 UTC
 
 ### Added
 - Jailbreak detection (for the civil-aviation approval file): on a jailbroken iPhone or iPad the app
