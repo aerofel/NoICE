@@ -21,7 +21,7 @@ struct NoICEApp: App {
     var body: some Scene {
         WindowGroup {
             if DeviceIntegrity.isCompromised {
-                IntegrityBlockedView()
+                IntegrityBlockedView(statusLine: configuration.headerStatusLine)
             } else {
                 mainView
             }

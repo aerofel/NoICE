@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct IntegrityBlockedView: View {
+    /// Same status line as the main header ("FAA · WINTER 2026-27 · °C").
+    let statusLine: String
+
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isBreathing = false
@@ -27,12 +30,34 @@ struct IntegrityBlockedView: View {
     }
 
     var body: some View {
+        VStack(spacing: 0) {
+            HeaderBanner(statusLine: statusLine)
+            content
+        }
+        .background {
+            ZStack {
+                Color(.systemGroupedBackground)
+                RadialGradient(
+                    colors: [warm.opacity(colorScheme == .dark ? 0.22 : 0.12), .clear],
+                    center: .center,
+                    startRadius: 0,
+                    endRadius: 420
+                )
+            }
+            .ignoresSafeArea()
+        }
+        .onAppear {
+            guard !reduceMotion else { return }
+            withAnimation(.easeInOut(duration: 2.4).repeatForever(autoreverses: true)) {
+                isBreathing = true
+            }
+        }
+    }
+
+    private var content: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: 0) {
-                    brand
-                        .padding(.top, 12)
-
                     Spacer(minLength: 32)
 
                     shield
@@ -55,61 +80,6 @@ struct IntegrityBlockedView: View {
             }
             .scrollBounceBehavior(.basedOnSize)
         }
-        .background {
-            ZStack {
-                Color(.systemGroupedBackground)
-                RadialGradient(
-                    colors: [warm.opacity(colorScheme == .dark ? 0.22 : 0.12), .clear],
-                    center: .top,
-                    startRadius: 0,
-                    endRadius: 460
-                )
-            }
-            .ignoresSafeArea()
-        }
-        .onAppear {
-            guard !reduceMotion else { return }
-            withAnimation(.easeInOut(duration: 2.4).repeatForever(autoreverses: true)) {
-                isBreathing = true
-            }
-        }
-    }
-
-    // MARK: - Brand
-
-    private var brand: some View {
-        HStack(spacing: 10) {
-            Image("Logo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
-                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .strokeBorder(Color.white.opacity(colorScheme == .dark ? 0.18 : 0.5), lineWidth: 0.5)
-                )
-            Text("No-ICE")
-                .font(.system(size: 22, weight: .heavy))
-                .tracking(3)
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: colorScheme == .dark
-                            ? [
-                                Color(red: 0.7, green: 0.9, blue: 1.0),
-                                Color.white,
-                                Color(red: 0.3, green: 0.75, blue: 1.0),
-                              ]
-                            : [
-                                Color(red: 0.05, green: 0.3, blue: 0.6),
-                                Color(red: 0.1, green: 0.45, blue: 0.8),
-                                Color(red: 0.15, green: 0.6, blue: 0.95),
-                              ],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
-        }
-        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Shield
@@ -232,5 +202,5 @@ struct IntegrityBlockedView: View {
 }
 
 #Preview {
-    IntegrityBlockedView()
+    IntegrityBlockedView(statusLine: "FAA \u{00B7} WINTER 2026-27 \u{00B7} \u{00B0}C")
 }

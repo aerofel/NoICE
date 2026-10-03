@@ -2,6 +2,14 @@
 
 All notable changes to NoICE are documented here. Newest entries first.
 
+## Unreleased — 2026-10-03 09:55 UTC
+
+### Changed
+- The "Device integrity compromised" screen now has the app's header banner (logo, gradient title,
+  source · season · unit) instead of a small logo row. The banner moved to `HeaderBanner.swift`, shared
+  with the main screen. On the blocked screen it has no gear or share button, its status line can't be
+  tapped, and it keeps the same height.
+
 ## Unreleased — 2026-10-03 09:45 UTC
 
 ### Changed
