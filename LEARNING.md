@@ -187,3 +187,4 @@
   out there. Verify a stock-device pass on a physical iPhone/iPad before release.
 - `UIDevice.userInterfaceIdiom` is `.pad` for the iPad app on a Mac: check `isiOSAppOnMac` first, then
   allow only `.phone`/`.pad` (excludes Vision Pro's iPad compatibility mode).
+- Device check (2026-10-03, iPhone 17 Pro + iPad Pro M4, stock): `devicectl device process launch --console --environment-variables '{"OS_ACTIVITY_DT_MODE":"enable"}'` mirrors the log to the terminal. Six "-canOpenURL: failed … -10814" lines (no app for the scheme) and no "Jailbreak detected" mean every check ran and passed: the URL schemes are the last check.
